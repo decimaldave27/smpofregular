@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular SMP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #thumbnail {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #333;
+            margin: 20px auto;
+        }
+
+        #server-link {
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Regular SMP</h1>
+    <div id="thumbnail">
+        <!-- You can replace the src attribute with your image URL -->
+        <img src="your-thumbnail-image.jpg" alt="Server Thumbnail">
+    </div>
+    <p>Server IP:</p>
+    <a id="server-link" href="mc.regularsmp.com" onclick="copyToClipboard()">Copy IP to Clipboard</a>
+
+    <script>
+        function copyToClipboard() {
+            const serverIP = "your-server-ip-address"; // Replace with your server's IP address
+            const tempInput = document.createElement("input");
+            tempInput.value = serverIP;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Server IP copied to clipboard: " + serverIP);
+        }
+    </script>
+</body>
+</html>
