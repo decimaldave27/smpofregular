@@ -8,45 +8,92 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #000; /* Set background color to black */
+            color: #fff; /* Set text color to white */
+        }
+
+        #server-info {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: transparent; /* Remove background color */
         }
 
         #thumbnail {
-            width: 200px;
-            height: 200px;
-            border: 2px solid #333;
-            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px;
         }
 
-        #server-link {
-            text-decoration: none;
-            background-color: #007bff;
+        /* Revert the Discord button to its initial style */
+        .discord-button {
+            background-color: #7289DA;
             color: #fff;
             padding: 10px 20px;
             border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            border: none;
             cursor: pointer;
+        }
+
+        /* Style for the "Is the server offline?" button */
+        #offline-button {
+            background-color: #f00; /* Red background color for offline button */
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Style for the message display */
+        #message {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Regular SMP</h1>
-    <div id="thumbnail">
-        <!-- You can replace the src attribute with your image URL -->
-        <img src="https://github.com/decimaldave27/smpofregular/blob/main/9c7d751cca088a494eb0e5d4eb5110b9.png?raw=true" alt="Server Thumbnail">
+    <h1>Welcome to Regular SMP!</h1>
+    <div id="server-info">
+        <h2>Server IP</h2>
+        <p>Click the button below to copy the server IP:</p>
+        <button id="copy-button">Copy IP</button>
+        <p id="server-ip">mc.regularsmp.com</p>
     </div>
-    <p>Server IP:</p>
-    <a id="server-link" href="mc.regularsmp.com" onclick="copyToClipboard()">Copy IP to Clipboard</a>
-
+    <a href="https://discord.gg/bmfSAszWuU" class="discord-button" target="_blank">Join our Discord</a>
+    <button id="offline-button">Is the server offline?</button>
+    <p id="message">Contact an admin of the Discord server to turn it on for you. (This is due to protect RAM usage)</p>
     <script>
-        function copyToClipboard() {
-            const serverIP = "your-server-ip-address"; // Replace with your server's IP address
-            const tempInput = document.createElement("input");
-            tempInput.value = serverIP;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            alert("Server IP copied to clipboard: " + serverIP);
-        }
+        // JavaScript to copy server IP to clipboard when the button is clicked
+        const copyButton = document.getElementById('copy-button');
+        const serverIp = document.getElementById('server-ip').innerText;
+
+        copyButton.addEventListener('click', () => {
+            const textarea = document.createElement('textarea');
+            textarea.value = serverIp;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Server IP copied to clipboard: ' + serverIp);
+        });
+
+        // JavaScript to toggle the message when the "Is the server offline?" button is clicked
+        const offlineButton = document.getElementById('offline-button');
+        const message = document.getElementById('message');
+
+        offlineButton.addEventListener('click', () => {
+            message.style.display = 'block'; // Display the message when clicked
+        });
     </script>
 </body>
 </html>
